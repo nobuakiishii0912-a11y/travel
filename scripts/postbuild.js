@@ -45,12 +45,28 @@ function main() {
     }
   }
 
+  // Ensure .nojekyll exists in public, out, and dist
+  const publicDir = path.resolve(__dirname, '../public');
+  [publicDir, outDir, distDir].forEach((dir) => {
+    if (fs.existsSync(dir)) {
+      const nojekyllPath = path.join(dir, '.nojekyll');
+      if (!fs.existsSync(nojekyllPath)) {
+        fs.writeFileSync(nojekyllPath, '');
+        console.log(`Created .nojekyll in ${path.relative(path.resolve(__dirname, '..'), dir)}`);
+      }
+    }
+  });
+
   // Verification check
-  if (fs.existsSync(path.join(distDir, 'index.html'))) {
-    const stat = fs.statSync(path.join(distDir, 'index.html'));
-    console.log(`✓ Verification successful: dist/index.html exists (${stat.size} bytes).`);
+  if (fs.existsSync(path.join(distDir, 'index.html')) || fs.existsSync(path.join(outDir, 'index.html'))) {
+    const targetFile = fs.existsSync(path.join(distDir, 'index.html'))
+      ? path.join(distDir, 'index.html')
+      : path.join(outDir, 'index.html');
+    const stat = fs.statSync(targetFile);
+    console.log(`✓ Verification successful: ${path.relative(path.resolve(__dirname, '..'), targetFile)} exists (${stat.size} bytes).`);
+    console.log(`✓ .nojekyll file verified for GitHub Pages.`);
   } else {
-    console.error('✗ Error: dist/index.html is missing after build!');
+    console.error('✗ Error: index.html is missing after build!');
     process.exit(1);
   }
 }
