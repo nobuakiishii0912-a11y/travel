@@ -1,0 +1,10 @@
+{
+  "name": "Singapore Trip Planner",
+  "description": "Offline-first 3-day travel schedule for Singapore (PWA) with interactive timeline, map caching, and currency converter.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
