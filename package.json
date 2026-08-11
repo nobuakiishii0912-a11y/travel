@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node -e \"const fs = require('fs'); if (fs.existsSync('.next')) fs.rmSync('.next', { recursive: true, force: true });\" && next dev -p 3000",
-    "build": "rm -rf dist && node scripts/export-data.js && NODE_ENV=production next build",
+    "build": "rm -rf dist out && node scripts/export-data.js && NODE_ENV=production next build && node scripts/postbuild.js",
     "lint": "eslint .",
     "clean": "next clean"
   },

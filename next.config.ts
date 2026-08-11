@@ -17,7 +17,6 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_BUILD_TIMESTAMP: buildTimestamp,
   },
   output: 'export',
-  distDir: 'dist',
   reactStrictMode: false,
   typescript: {
     ignoreBuildErrors: true,
