@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 export const metadata: Metadata = {
   title: 'Singapore Trip Planner',
   description: 'Personal travel schedule for Singapore trip',
-  manifest: '/manifest.json',
 };
 
 export const viewport: Viewport = {
@@ -22,10 +21,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="ja" className={inter.variable}>
       <head>
-        {/* eslint-disable-next-line @next/next/no-css-tags */}
-        <link rel="stylesheet" href="/globals.compiled.css" />
+        <link rel="manifest" href="./manifest.json" />
+        <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <ServiceWorkerRegister />

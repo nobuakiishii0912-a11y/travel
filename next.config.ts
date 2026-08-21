@@ -39,6 +39,8 @@ const getBasePath = (): string => {
 const basePath = getBasePath();
 
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
   basePath: basePath || undefined,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   env: {

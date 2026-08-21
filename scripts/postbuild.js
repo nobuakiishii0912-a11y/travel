@@ -33,43 +33,15 @@ function main() {
   fs.mkdirSync(distDir, { recursive: true });
   fs.mkdirSync(outDir, { recursive: true });
 
-  // Copy public assets
+  // 1. Mirror out/ into dist/ so both environments (GitHub Pages and AI Studio static host) have identical files
+  copyDir(outDir, distDir);
+
+  // 2. Ensure public assets are synced
   copyDir(publicDir, distDir);
   copyDir(publicDir, outDir);
 
-  // Copy Next.js static assets if available (.next/static -> _next/static)
-  if (fs.existsSync(nextStaticDir)) {
-    copyDir(nextStaticDir, path.join(distDir, '_next/static'));
-    copyDir(nextStaticDir, path.join(outDir, '_next/static'));
-  }
-
-  // Ensure index.html exists in both dist/ and out/
-  const fallbackHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Singapore Trip Planner</title>
-  <meta http-equiv="refresh" content="0;url=./" />
-</head>
-<body>
-  <p>Loading Singapore Trip Planner...</p>
-</body>
-</html>`;
-
+  // 3. Ensure .nojekyll exists for GitHub Pages
   [distDir, outDir].forEach((dir) => {
-    const indexPath = path.join(dir, 'index.html');
-    if (!fs.existsSync(indexPath)) {
-      // If there is an index.html from public, great. Otherwise write fallback.
-      const pubIndex = path.join(publicDir, 'index.html');
-      if (fs.existsSync(pubIndex)) {
-        fs.copyFileSync(pubIndex, indexPath);
-      } else {
-        fs.writeFileSync(indexPath, fallbackHtml);
-      }
-    }
-
-    // Ensure .nojekyll exists for GitHub Pages
     const nojekyllPath = path.join(dir, '.nojekyll');
     if (!fs.existsSync(nojekyllPath)) {
       fs.writeFileSync(nojekyllPath, '');
