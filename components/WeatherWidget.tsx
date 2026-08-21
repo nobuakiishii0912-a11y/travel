@@ -62,11 +62,15 @@ export const WeatherWidget = React.memo(function WeatherWidget({ lat, lng, timeS
         let targetDateForQuery = date;
         
         const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,weather_code&timezone=Asia%2FSingapore&start_date=${date}&end_date=${date}`;
-        let res = await fetch(forecastUrl);
-        if (res.ok) {
-            data = await res.json();
+        let res = await fetch(forecastUrl).catch(() => null);
+        if (res && res.ok) {
+            data = await res.json().catch(() => null);
             // Verify if data actually has the target hour
-            if (!data.hourly.time.includes(`${date}T${hourStr}`)) {
+            if (data && data.hourly && Array.isArray(data.hourly.time)) {
+                if (!data.hourly.time.includes(`${date}T${hourStr}`)) {
+                    data = null;
+                }
+            } else {
                 data = null;
             }
         }
@@ -78,9 +82,9 @@ export const WeatherWidget = React.memo(function WeatherWidget({ lat, lng, timeS
              targetDateForQuery = lastYearDate;
              
              const archiveUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lng}&timezone=Asia%2FSingapore&start_date=${lastYearDate}&end_date=${lastYearDate}&hourly=temperature_2m,weather_code`;
-             res = await fetch(archiveUrl);
-             if (res.ok) {
-                data = await res.json();
+             res = await fetch(archiveUrl).catch(() => null);
+             if (res && res.ok) {
+                data = await res.json().catch(() => null);
              }
         }
 

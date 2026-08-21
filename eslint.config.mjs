@@ -6,12 +6,13 @@ const compat = new FlatCompat();
 export default [
   {
     ignores: [
-      ".next/*",
-      ".next_build/*",
-      "node_modules/*",
-      "public/*.js",
-      "dist/*",
-      "out/*"
+      ".next/**",
+      ".next-build/**",
+      ".next_build/**",
+      "node_modules/**",
+      "public/**",
+      "dist/**",
+      "out/**"
     ]
   },
   js.configs.recommended,

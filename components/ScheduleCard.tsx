@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 import { ScheduleItem } from '../lib/types';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { GripVertical, Clock, MapPin, QrCode, Train, Car, Bus, Plane, Footprints, ChevronDown, ChevronUp, Sparkles, AlertTriangle, ArrowDown, Map as MapIcon, Navigation, CheckCircle2, Circle, Copy, Edit2, Save, X } from 'lucide-react';
+import { GripVertical, Clock, MapPin, QrCode, Train, Car, Bus, Plane, Footprints, ChevronDown, ChevronUp, Sparkles, AlertTriangle, ArrowDown, Map as MapIcon, Navigation, CheckCircle2, Circle, Copy, Edit2, Save, X, ExternalLink } from 'lucide-react';
 import { WeatherWidget } from './WeatherWidget';
 import { useStore } from '../store/useStore';
 
@@ -63,14 +63,12 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
   };
 
   const getTransportIcon = (type: string) => {
-    switch (type) {
-      case '徒歩': return <Footprints size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-      case 'MRT': return <Train size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-      case 'タクシー': return <Car size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-      case 'バス': return <Bus size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-      case '飛行機': return <Plane size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-      default: return <ArrowDown size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
-    }
+    if (type.includes('地下鉄') || type.includes('MRT') || type.includes('電車')) return <Train size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
+    if (type.includes('バス') || type.includes('シャトルバス')) return <Bus size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
+    if (type.includes('タクシー') || type.includes('車')) return <Car size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
+    if (type.includes('徒歩')) return <Footprints size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
+    if (type.includes('飛行機')) return <Plane size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
+    return <ArrowDown size={14} className={isCompleted ? "text-neutral-400" : "text-blue-500"} />;
   };
 
   const hasDetails = true;
@@ -105,18 +103,20 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
                 {item.priority === 'High' && (
                   <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-100">★ High</span>
                 )}
-                {item.stayDurationMin && (
+                {item.stayDurationMin !== undefined && (
                   <span className="flex items-center gap-1 text-[10px] font-medium text-neutral-500 px-1">
-                    <Clock size={10} /> 滞在 {item.stayDurationMin}分
+                    <Clock size={10} /> 滞在 {item.stayDurationMin > 0 ? `${item.stayDurationMin}分` : '-'}
                   </span>
                 )}
               </div>
               <h3 className="font-bold text-[15px] sm:text-base text-neutral-900 leading-tight break-words">{item.title}</h3>
             </div>
             <div className="text-right shrink-0 flex flex-col items-end">
-              <div className="bg-neutral-100 px-2.5 py-1 rounded-lg">
+              <div className="bg-neutral-100 px-2.5 py-1 rounded-lg flex flex-col items-center justify-center min-w-[52px]">
                 <div className="text-sm sm:text-base font-bold font-mono tracking-tight text-neutral-900 leading-none">{item.startTime}</div>
-                <div className="text-[10px] font-mono text-neutral-500 leading-none mt-1">{item.endTime}</div>
+                {item.endTime && item.endTime !== item.startTime && (
+                  <div className="text-[10px] font-mono text-neutral-500 leading-none mt-1">{item.endTime}</div>
+                )}
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
               >
                 {item.locationName}
               </a>
-              {item.notes && item.notes.includes('予約') && (
+              {item.qrCodeUrl && (
                  <button 
                    onClick={(e) => {
                      e.preventDefault();
@@ -212,16 +212,17 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
             </button>
           </div>
 
-          <div className="mt-2 text-center">
-            <button
-              onClick={() => setActiveModal('taxi')}
-              className="w-full py-2 bg-neutral-900 text-white font-bold text-[11px] rounded-xl flex items-center justify-center gap-2 hover:bg-neutral-800 transition-transform active:scale-95 shadow-md"
-            >
-              <Car size={14} /> タクシー用 行き先カードを表示
-            </button>
-          </div>
+          {item.showTaxiCard && (
+            <div className="mt-2 text-center">
+              <button
+                onClick={() => setActiveModal('taxi')}
+                className="w-full py-2 bg-neutral-900 text-white font-bold text-[11px] rounded-xl flex items-center justify-center gap-2 hover:bg-neutral-800 transition-transform active:scale-95 shadow-md"
+              >
+                <Car size={14} /> タクシー用 行き先カードを表示
+              </button>
+            </div>
+          )}
 
-          
           {hasDetails && (
             <>
               <button 
@@ -335,11 +336,13 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
                     )}
                   </div>
                   {item.notes && (
-                     <div className="bg-indigo-50/50 p-3 rounded-xl border border-indigo-100/50">
-                       <h4 className="font-bold text-[10px] uppercase tracking-wider text-indigo-400 mb-1">MEMO</h4>
-                       <p className="text-xs text-indigo-900/80 font-medium">
+                     <div className="bg-indigo-50/50 p-3.5 rounded-2xl border border-indigo-100/60 shadow-xs">
+                       <h4 className="font-bold text-[10px] uppercase tracking-wider text-indigo-500 mb-1.5 flex items-center gap-1">
+                         📝 MEMO
+                       </h4>
+                       <div className="text-xs text-indigo-950 font-medium whitespace-pre-wrap leading-relaxed space-y-1">
                          {item.notes}
-                       </p>
+                       </div>
                      </div>
                   )}
                 </div>
@@ -355,7 +358,20 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
              {getTransportIcon(item.transport.type)}
            </div>
            <div className="flex flex-col z-10 bg-white/80 backdrop-blur-sm pr-3 py-1 rounded-lg">
-             <span className="text-blue-600 font-semibold text-xs sm:text-sm">{item.transport.type} {item.transport.durationMin}分</span>
+             {item.transport.mapUrl ? (
+               <a 
+                 href={item.transport.mapUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 hover:underline font-bold text-xs sm:text-sm group cursor-pointer transition-colors"
+                 title="Google Mapsでルートを確認"
+               >
+                 <span>{item.transport.type} {item.transport.durationMin}分</span>
+                 <ExternalLink size={12} className="opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+               </a>
+             ) : (
+               <span className="text-blue-600 font-semibold text-xs sm:text-sm">{item.transport.type} {item.transport.durationMin}分</span>
+             )}
              {item.transport.route && <span className="text-neutral-500 text-[10px]">{item.transport.route}</span>}
            </div>
         </div>

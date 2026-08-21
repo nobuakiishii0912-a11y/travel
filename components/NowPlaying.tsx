@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
-import { parse, format, differenceInMinutes, subMinutes, addMinutes } from 'date-fns';
+import { parse, format, differenceInMinutes, subMinutes, addMinutes, isValid } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import { Clock, AlertTriangle, Navigation, Footprints, Train, Car, Plane, Bus } from 'lucide-react';
+import { CheckCircle2, Clock, AlertTriangle, Navigation, Footprints, Train, Car, Plane, Bus } from 'lucide-react';
 import { ScheduleItem } from '../lib/types';
 import { useStore } from '../store/useStore';
 
@@ -25,11 +25,10 @@ export function NowPlaying() {
 
   // Filter schedules by selected date
   const schedules = useMemo(() => {
-    return allSchedules.filter(item => item.date === selectedDate);
+    return (allSchedules || []).filter(item => item.date === selectedDate);
   }, [allSchedules, selectedDate]);
   
   const [showOfflineRoute, setShowOfflineRoute] = useState(false);
-
 
   if (!schedules || schedules.length === 0) {
     return null;
@@ -42,9 +41,10 @@ export function NowPlaying() {
 
   if (targetIndex !== -1) {
     while (targetIndex < schedules.length - 1) {
-      const tEnd = parse(`${selectedDate} ${schedules[targetIndex].endTime}`, 'yyyy-MM-dd HH:mm', new Date());
+      const timeStr = schedules[targetIndex].endTime || schedules[targetIndex].startTime || '23:59';
+      const tEnd = parse(`${selectedDate} ${timeStr}`, 'yyyy-MM-dd HH:mm', new Date());
       // 終了時刻から30分以上経過していたら「完了押し忘れ」とみなして次をNowPlayingの対象とする
-      if (differenceInMinutes(currentTime, tEnd) > 30) {
+      if (isValid(tEnd) && differenceInMinutes(currentTime, tEnd) > 30) {
         targetIndex++;
         skippedCount++;
       } else {
@@ -57,7 +57,7 @@ export function NowPlaying() {
     return (
       <div className="bg-emerald-50 text-emerald-800 p-5 rounded-3xl mb-4 shadow-sm border border-emerald-200">
         <h2 className="text-xl font-bold flex items-center gap-2">
-          <CheckCircle2Icon /> すべての予定が完了しました！
+          <CheckCircle2 size={24} className="text-emerald-600" /> すべての予定が完了しました！
         </h2>
         <p className="text-sm mt-1 opacity-80">お疲れ様でした。ゆっくりお休みください。</p>
       </div>
@@ -65,18 +65,20 @@ export function NowPlaying() {
   }
 
   const activeItem = schedules[targetIndex];
-  const activeStart = parse(`${selectedDate} ${activeItem.startTime}`, 'yyyy-MM-dd HH:mm', new Date());
-  const activeEnd = parse(`${selectedDate} ${activeItem.endTime}`, 'yyyy-MM-dd HH:mm', new Date());
+  const startStr = activeItem.startTime || '00:00';
+  const endStr = activeItem.endTime || '23:59';
+  const activeStart = parse(`${selectedDate} ${startStr}`, 'yyyy-MM-dd HH:mm', new Date());
+  const activeEnd = parse(`${selectedDate} ${endStr}`, 'yyyy-MM-dd HH:mm', new Date());
   
   const transportTime = activeItem.transport?.durationMin || 0;
-  const departureTime = subMinutes(activeStart, transportTime);
+  const departureTime = isValid(activeStart) ? subMinutes(activeStart, transportTime) : activeStart;
   
-  const minsToStart = differenceInMinutes(activeStart, currentTime);
-  const minsToDepart = differenceInMinutes(departureTime, currentTime);
-  const delayMins = differenceInMinutes(currentTime, activeEnd);
+  const minsToStart = isValid(activeStart) ? differenceInMinutes(activeStart, currentTime) : 0;
+  const minsToDepart = isValid(departureTime) ? differenceInMinutes(departureTime, currentTime) : 0;
+  const delayMins = isValid(activeEnd) ? differenceInMinutes(currentTime, activeEnd) : 0;
   
   // 現在の遅延時間 (目標出発時間と現在時刻の差。未来なら遅延なし)
-  const currentDelay = differenceInMinutes(currentTime, departureTime);
+  const currentDelay = isValid(departureTime) ? differenceInMinutes(currentTime, departureTime) : 0;
   const isDelayed = currentDelay > 0 && minsToStart > 0; // まだ開始してないのに出発時刻を過ぎている
 
   let stateTitle = "";
@@ -106,7 +108,8 @@ export function NowPlaying() {
   } else {
       // currentTime >= activeStart && currentTime <= activeEnd
       stateTitle = `「${activeItem.title}」に滞在中`;
-      stateMessage = `終了まであと ${differenceInMinutes(activeEnd, currentTime)}分`;
+      const remainMins = isValid(activeEnd) ? differenceInMinutes(activeEnd, currentTime) : 0;
+      stateMessage = remainMins > 0 ? `終了まであと ${remainMins}分` : `滞在時間中`;
   }
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -285,5 +288,3 @@ export function NowPlaying() {
     </div>
   );
 }
-
-function CheckCircle2Icon() { return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>; }

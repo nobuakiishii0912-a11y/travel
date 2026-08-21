@@ -28,15 +28,16 @@ interface TimelineProps {
 export const Timeline = React.memo(function Timeline({ schedules, date }: TimelineProps) {
   const { reorderSchedules } = useStore();
   // Auto-scroll to active item
-  const statuses = useMemo(() => schedules.map(s => s.status).join(','), [schedules]);
+  const activeItemId = useMemo(() => {
+    const item = schedules.find(s => s.status !== 'Completed');
+    return item ? item.id : null;
+  }, [schedules]);
 
   useEffect(() => {
-    // Find the first not-completed item
-    const activeItem = schedules.find(s => s.status !== 'Completed');
-    if (activeItem) {
+    if (activeItemId) {
       // Small timeout to ensure DOM layout is complete
       const timer = setTimeout(() => {
-        const el = document.getElementById(`card-${activeItem.id}`);
+        const el = document.getElementById(`card-${activeItemId}`);
         if (el) {
           // Calculate offset to scroll smoothly with spacing for header
           const y = el.getBoundingClientRect().top + window.scrollY - 150;
@@ -45,7 +46,7 @@ export const Timeline = React.memo(function Timeline({ schedules, date }: Timeli
       }, 300);
       return () => clearTimeout(timer);
     }
-  }, [statuses, date, schedules]);
+  }, [activeItemId, date]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {

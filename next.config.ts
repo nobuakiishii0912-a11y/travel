@@ -41,12 +41,10 @@ const basePath = getBasePath();
 const nextConfig: NextConfig = {
   basePath: basePath || undefined,
   assetPrefix: basePath ? `${basePath}/` : undefined,
-  trailingSlash: true,
   env: {
     NEXT_PUBLIC_BUILD_TIMESTAMP: buildTimestamp,
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
-  output: 'export',
   reactStrictMode: false,
   typescript: {
     ignoreBuildErrors: true,
@@ -70,6 +68,12 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'leaflet', 'react-leaflet'];
+    }
+    return config;
   },
 };
 

@@ -26,7 +26,8 @@
     "highlights": [
       "スタート！"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "2",
@@ -57,12 +58,13 @@
     ],
     "warnings": [
       "滝（レイン・ボルテックス）の稼働時間は月〜木11:00〜22:00です。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "3",
     "date": "2026-09-08",
-    "title": "マリーナベイ・サンズ",
+    "title": "マリーナベイ・サンズ（チェックイン）",
     "startTime": "17:20",
     "endTime": "18:00",
     "locationName": "Marina Bay Sands",
@@ -85,7 +87,8 @@
     "highlights": [
       "1泊目ホテルチェックイン・部屋で休憩"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "4",
@@ -113,7 +116,8 @@
     "highlights": [
       "夕暮れから夜景へと変わるマジックアワーの絶景。温水ジャグジーもあります。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "5",
@@ -142,7 +146,8 @@
     "highlights": [
       "地上200mからシンガポール海峡やガーデンズ・バイ・ザ・ベイを見下ろす360度のパノラマビュー。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "6",
@@ -171,7 +176,8 @@
     "highlights": [
       "最前列は水しぶきがかかるほどの臨場感！光と水のダイナミックなショーを楽しみます。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "7",
@@ -201,7 +207,8 @@
     ],
     "warnings": [
       "毎日19:45と20:45の2回開催（約15分間）。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "8",
@@ -223,13 +230,44 @@
     "order": 7,
     "transport": {
       "type": "タクシー",
-      "durationMin": 15
+      "durationMin": 15,
+      "route": "タクシーでホテル（マリーナベイ・サンズ）へ戻ります"
     },
     "stayDurationMin": 90,
     "highlights": [
       "名物チリクラブ"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
+  },
+  {
+    "id": "9",
+    "date": "2026-09-08",
+    "title": "マリーナベイ・サンズ",
+    "startTime": "23:00",
+    "endTime": "23:00",
+    "locationName": "Marina Bay Sands",
+    "lat": 1.2834,
+    "lng": 103.8607,
+    "address": "10 Bayfront Ave, シンガポール 018956",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.2834,103.8607",
+    "openingHours": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "category": "Hotel",
+    "priority": "High",
+    "order": 8,
+    "transport": {
+      "type": "なし",
+      "durationMin": 0
+    },
+    "stayDurationMin": 0,
+    "highlights": [
+      "1日目終了。ホテルに戻ってゆっくり休憩・宿泊。"
+    ],
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "10",
@@ -257,7 +295,8 @@
     "highlights": [
       "2日目スタート！"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "11",
@@ -287,7 +326,8 @@
     ],
     "warnings": [
       "吊り橋（OCBC Skyway）は9:00オープン。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "12",
@@ -315,7 +355,8 @@
     "highlights": [
       "10:00オープン。紅茶の茶葉を練り込んだマカロンやスイーツで優雅な朝 of ティータイム。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "13",
@@ -343,7 +384,8 @@
     "highlights": [
       "ホテルチェックアウト"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "14",
@@ -354,8 +396,8 @@
     "locationName": "Hotel Mi Rochor",
     "lat": 1.3015,
     "lng": 103.8526,
-    "address": "225 Bencoolen St, シンガポール 189675",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.3015,103.8526",
+    "address": "89 Short Street, Singapore 188216",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=89+Short+Street,+Singapore+188216",
     "openingHours": {
       "open": "00:00",
       "close": "23:59"
@@ -372,7 +414,8 @@
     "highlights": [
       "2泊目ホテルに荷物を預ける"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "15",
@@ -402,7 +445,8 @@
     ],
     "warnings": [
       "まず「スリ・マリアマン寺院」へ（12:00〜18:00は中休み）。その後「Buddha Tooth Relic Temple」へ。肌の露出NGです。"
-    ]
+    ],
+    "showTaxiCard": true
   },
   {
     "id": "16",
@@ -432,7 +476,8 @@
     ],
     "warnings": [
       "マックスウェル・フードセンター内。行列必至。先にポケットティッシュ等で席を確保するのが鉄則。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "17",
@@ -460,7 +505,8 @@
     "highlights": [
       "半熟卵にダークソイソースをかけ、本店限定の炭火焼きトーストをディップするローカル流おやつ。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "18",
@@ -490,7 +536,8 @@
     ],
     "warnings": [
       "月〜金の平日限定で一般無料開放（午後は14:30〜18:00）。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "19",
@@ -519,19 +566,20 @@
     "highlights": [
       "手乗りの遠近法トリック写真など定番の撮影を。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "20",
     "date": "2026-09-09",
-    "title": "Hotel Mi Rochor（帰館）",
+    "title": "Hotel Mi Rochor（チェックイン）",
     "startTime": "16:20",
-    "endTime": "18:35",
+    "endTime": "17:10",
     "locationName": "Hotel Mi Rochor",
     "lat": 1.3015,
     "lng": 103.8526,
-    "address": "225 Bencoolen St, シンガポール 189675",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.3015,103.8526",
+    "address": "89 Short Street, Singapore 188216",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=89+Short+Street,+Singapore+188216",
     "openingHours": {
       "open": "00:00",
       "close": "23:59"
@@ -540,29 +588,31 @@
     "priority": "High",
     "order": 10,
     "transport": {
-      "type": "タクシー",
-      "durationMin": 40,
-      "route": "ナイトサファリへ向けて出発。タクシーで約40分。"
+      "type": "地下鉄＆シャトルバス",
+      "durationMin": 80,
+      "route": "地下鉄＆シャトルバスでナイトサファリへ移動（約80分）",
+      "mapUrl": "https://maps.app.goo.gl/TcCJ6UNvGGCexsXA8"
     },
-    "stayDurationMin": 135,
+    "stayDurationMin": 50,
     "highlights": [
-      "ホテルに戻してチェックイン。お疲れ様でした。少し休んでから、夜のナイトサファリへ備えましょう。"
+      "ホテルにチェックイン。お部屋で少し休憩してから、夜のナイトサファリへ備えましょう。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "21",
     "date": "2026-09-09",
     "title": "ナイトサファリ",
-    "startTime": "19:15",
-    "endTime": "22:15",
+    "startTime": "18:30",
+    "endTime": "22:00",
     "locationName": "Night Safari",
     "lat": 1.4022,
     "lng": 103.788,
     "address": "80 Mandai Lake Rd, シンガポール 729826",
     "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.4022,103.7880",
     "openingHours": {
-      "open": "19:15",
+      "open": "18:00",
       "close": "00:00"
     },
     "category": "Sightseeing",
@@ -573,18 +623,43 @@
       "durationMin": 40,
       "route": "タクシーでホテル（Hotel Mi Rochor）へ戻ります"
     },
-    "stayDurationMin": 180,
-    "highlights": [
-      "夜の暗闇の中で活動する動物たちをトラムから観察。",
-      "日本語音声トラムの予約（19:45）を忘れずに！",
-      "クリーチャーズ・オブ・ザ・ナイト・ショー（動物ショー）も見逃せません。"
-    ],
+    "stayDurationMin": 210,
+    "highlights": [],
     "warnings": [
       "フラッシュ撮影は禁止です。",
       "蚊が多いので虫除けスプレー必須。"
     ],
-    "notes": "★日本語トラム予約済み（19:45発）。eチケット（QRコード）が保存されています。",
-    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TICKET-NIGHTSAFARI-2026"
+    "showTaxiCard": false,
+    "notes": "★Wi-Fi「PARK_FREE_WIFI」接続\n\n18:30 〜 19:15 【① 現地での夕食 ＆ 雰囲気満喫】（45分）\n★飲食店バウチャーS$10（S$5×2）を利用\nおすすめの食事スポット：\nUlu Ulu Safari Restaurant（入園ゲート周辺）： チキンライス、ラクサ、サテなどのローカル料理が揃う定番レストラン。\nMandai Wildlife West（ゲート手前エリア）： A&W（バーガー）、Bird Bakery、Collin's（洋食）など、カジュアルに楽しめる飲食店が多数。\n\n19:25 〜 20:00 【② 日本語トラム乗車】（45分）\n\n★19:25： マルチランゲージトラム乗り場（5番乗り場）に集合\n\n19:35 〜 20:10： 日本語音声トラム乗車（約30〜35分）\n\n20:10 〜 20:20 【インターバル ＆ 移動】（10分）\nトラムを降りたら、アンフィシアター（ショー会場）までは徒歩2〜3分の近さです。\n\n20:20 〜 21:00 【③ ナイトショー鑑賞】（40分）\n\n★20:20： クリーチャー・オブ・ザ・ナイトのアンフィシアター1階の入口（扉前）に集合\n\n20:30 〜 21:00： 「Creatures of the Night」鑑賞（約30分）\n\n21:00： ショー終了後、現地にて自由解散\n\n21:00 〜 21:45 【④ 徒歩トレイル散策（解散後）】（45分）\nここが最大のポイント：\nおすすめルート：Leopard Trail（レオパード・トレイル）＋East Lodge Trail\nヒョウ（Leopard）＆ ウンピョウ： トラムからは見えないガラス越しの至近距離で、歩き回る美しい姿を観察。\nマレートラ ＆ スローロリス： 木の上でゆっくり動く姿は必見。\nオオコウモリの巨大ドーム（Giant Flying Fox）： 檻の中に入ると、目の前を巨大なコウモリが音もなく滑空する圧巻の体験。\n\n21:45 〜 22:00【⑤ お土産選び ＆ 退園】（30分）\n場所： 退園口直前にある大型ショップ「Safari Shop」。\n★小売店バウチャーS$10（S$5×2）を利用\n\n22:00： 買い物を終えて退園ゲートを出る"
+  },
+  {
+    "id": "22",
+    "date": "2026-09-09",
+    "title": "Hotel Mi Rochor",
+    "startTime": "22:40",
+    "endTime": "22:40",
+    "locationName": "Hotel Mi Rochor",
+    "lat": 1.3015,
+    "lng": 103.8526,
+    "address": "89 Short Street, Singapore 188216",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=89+Short+Street,+Singapore+188216",
+    "openingHours": {
+      "open": "00:00",
+      "close": "23:59"
+    },
+    "category": "Hotel",
+    "priority": "Low",
+    "order": 12,
+    "transport": {
+      "type": "なし",
+      "durationMin": 0
+    },
+    "stayDurationMin": 0,
+    "highlights": [
+      "2日目終了。ホテルに帰着しておやすみなさい。"
+    ],
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "41",
@@ -593,8 +668,8 @@
     "locationName": "Hotel Mi Rochor",
     "lat": 1.3015,
     "lng": 103.8526,
-    "address": "225 Bencoolen St, シンガポール 189675",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.3015,103.8526",
+    "address": "89 Short Street, Singapore 188216",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=89+Short+Street,+Singapore+188216",
     "openingHours": {
       "open": "00:00",
       "close": "23:59"
@@ -612,7 +687,8 @@
     ],
     "startTime": "08:30",
     "endTime": "08:30",
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "23",
@@ -640,7 +716,8 @@
     "highlights": [
       "スパイスの香りが漂うカラフルな街並みで異国情緒あふれる写真撮影。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "24",
@@ -668,7 +745,8 @@
     "highlights": [
       "バラマキ土産が所狭しと並ぶローカルなアーケード街散策。スリに注意。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "25",
@@ -698,7 +776,8 @@
     ],
     "warnings": [
       "サルタン・モスク見学は10:00〜12:00。肌の露出NG。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "26",
@@ -727,7 +806,8 @@
     "highlights": [
       "シンガポール最大のショッピングストリートでウィンドウショッピング。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "27",
@@ -755,7 +835,8 @@
     "highlights": [
       "胡椒とニンニクが効いた絶品スープは何度でもおかわり無料。油条（揚げパン）を浸して食べます。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "28",
@@ -785,7 +866,8 @@
     ],
     "warnings": [
       "現在は官公庁として使用されているため、外観のみの撮影となります。道路の交通量が多いので撮影時は注意。"
-    ]
+    ],
+    "showTaxiCard": false
   },
   {
     "id": "29",
@@ -813,7 +895,8 @@
     "highlights": [
       "右手で水に触れながら、願い事を念じて泉の周りを時計回りに3周すると願いが叶うと言われています。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "30",
@@ -824,8 +907,8 @@
     "locationName": "Hotel Mi Rochor",
     "lat": 1.3015,
     "lng": 103.8526,
-    "address": "225 Bencoolen St, シンガポール 189675",
-    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=1.3015,103.8526",
+    "address": "89 Short Street, Singapore 188216",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=89+Short+Street,+Singapore+188216",
     "openingHours": {
       "open": "00:00",
       "close": "23:59"
@@ -841,7 +924,8 @@
     "highlights": [
       "預けた荷物をピックアップ"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "31",
@@ -871,7 +955,8 @@
     ],
     "warnings": [
       "一般住宅なので敷地内に入ったり大声を出さないようマナー厳守。"
-    ]
+    ],
+    "showTaxiCard": true
   },
   {
     "id": "32",
@@ -899,7 +984,8 @@
     "highlights": [
       "箸を使わず「レンゲのみ」でスープと一緒に短く切られた麺をすくって食べるのがカトンラクサの伝統スタイル。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   },
   {
     "id": "33",
@@ -928,15 +1014,16 @@
     "highlights": [
       "最後のお土産購入など"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": true
   },
   {
     "id": "34",
     "date": "2026-09-10",
-    "title": "日本（羽田空港／成田空港）に帰国",
+    "title": "日本（羽田空港）に帰国",
     "startTime": "18:10",
     "endTime": "18:10",
-    "locationName": "Haneda / Narita Airport",
+    "locationName": "Haneda Airport",
     "lat": 35.5494,
     "lng": 139.7798,
     "address": "日本、東京都大田区羽田空港",
@@ -956,6 +1043,7 @@
     "highlights": [
       "無事日本に帰国！3日間のシンガポール旅行、お疲れ様でした。"
     ],
-    "warnings": []
+    "warnings": [],
+    "showTaxiCard": false
   }
 ]

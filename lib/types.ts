@@ -6,6 +6,7 @@ export interface TransportDetail {
   type: '徒歩' | 'MRT' | 'タクシー' | 'バス' | '飛行機' | 'なし' | string;
   durationMin: number;
   route?: string;
+  mapUrl?: string;
 }
 
 export interface ScheduleItem {
@@ -34,5 +35,6 @@ export interface ScheduleItem {
   order: number; // for sorting
   qrCodeUrl?: string; // for reservations
   status?: ScheduleStatus;
+  showTaxiCard?: boolean; // Whether to show Taxi destination card button (defaults to true)
 }
 

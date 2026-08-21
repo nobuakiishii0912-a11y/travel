@@ -25,6 +25,11 @@ interface TravelStore {
   resetSchedules: () => Promise<void>;
 }
 
+const defaultSchedules: ScheduleItem[] = initialData.map(item => ({
+  ...item,
+  status: item.status || 'NotStarted'
+}));
+
 export const useStore = create<TravelStore>((set) => ({
   selectedDate: '2026-09-08',
   setSelectedDate: (date) => set({ selectedDate: date }),
@@ -33,76 +38,95 @@ export const useStore = create<TravelStore>((set) => ({
   isOffline: false,
   setIsOffline: (offline) => set({ isOffline: offline }),
   
-  // Schedules initial state
-  schedules: [],
+  // Schedules initial state: initialized immediately with default data so UI renders without delay
+  schedules: defaultSchedules,
   isLoadingSchedules: false,
   dbError: false,
 
   initSchedules: async () => {
-    set({ isLoadingSchedules: true });
-    
     if (typeof window === 'undefined') {
-      set({ schedules: initialData, isLoadingSchedules: false });
       return;
     }
 
-    let loadedSchedules: ScheduleItem[] = [];
-    let usingIndexedDB = false;
+    try {
+      let loadedSchedules: ScheduleItem[] | null = null;
 
-    // 1. Try Loading from IndexedDB (Dexie)
-    if (db) {
+      // 1. Synchronously read from localStorage for 0ms instant display
       try {
-        // Attempt a test count to ensure Dexie is fully functional (no iframe sandbox blocker)
-        const count = await db.schedules.count();
-        if (count > 0) {
-          loadedSchedules = await db.schedules.toArray();
-          usingIndexedDB = true;
-          console.log('[Store] Loaded schedules from IndexedDB:', loadedSchedules.length);
-        } else {
-          const schedulesWithStatus = initialData.map(item => ({
-            ...item,
-            status: item.status || 'NotStarted'
-          }));
-          await db.schedules.bulkAdd(schedulesWithStatus);
-          loadedSchedules = schedulesWithStatus;
-          usingIndexedDB = true;
-          console.log('[Store] Populated and loaded schedules from IndexedDB:', loadedSchedules.length);
-        }
-      } catch (err) {
-        console.warn('[Store] IndexedDB load failed, falling back to localStorage:', err);
-        set({ dbError: true });
-      }
-    }
-
-    // 2. Fallback to LocalStorage
-    if (!usingIndexedDB) {
-      try {
+        const storedVersion = localStorage.getItem('SingaporeTravelDataVersion');
         const localData = localStorage.getItem('SingaporeTravelSchedules');
-        if (localData) {
-          loadedSchedules = JSON.parse(localData);
-          console.log('[Store] Loaded schedules from localStorage:', loadedSchedules.length);
+        const CURRENT_VERSION = 'v20';
+
+        if (localData && storedVersion === CURRENT_VERSION) {
+          try {
+            const parsed = JSON.parse(localData);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              loadedSchedules = parsed;
+            }
+          } catch (parseErr) {
+            console.warn('[Store] JSON parse error, falling back to defaultSchedules:', parseErr);
+            loadedSchedules = defaultSchedules;
+          }
         } else {
-          loadedSchedules = initialData.map(item => ({
-            ...item,
-            status: item.status || 'NotStarted'
-          }));
-          localStorage.setItem('SingaporeTravelSchedules', JSON.stringify(loadedSchedules));
-          console.log('[Store] Initialized localStorage with default schedules');
+          // Version updated or first load: clear old storage and use updated defaults
+          loadedSchedules = defaultSchedules;
+          localStorage.setItem('SingaporeTravelSchedules', JSON.stringify(defaultSchedules));
+          localStorage.setItem('SingaporeTravelDataVersion', CURRENT_VERSION);
+          if (db) {
+            db.schedules.clear().then(() => db.schedules.bulkAdd(defaultSchedules)).catch(err => console.warn(err));
+          }
         }
-      } catch (err) {
-        console.error('[Store] localStorage fallback failed:', err);
-        // Absolute fallback to memory only
-        loadedSchedules = initialData.map(item => ({
-          ...item,
-          status: item.status || 'NotStarted'
-        }));
+      } catch (lsErr) {
+        console.warn('[Store] localStorage read warning:', lsErr);
       }
+
+      // If localStorage had valid data, set it immediately
+      if (loadedSchedules) {
+        loadedSchedules.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        set({ schedules: loadedSchedules });
+      }
+
+      // 2. Safely check IndexedDB in the background with a 1-second timeout
+      if (db) {
+        try {
+          const idbPromise = (async () => {
+            const count = await db.schedules.count();
+            if (count > 0) {
+              return await db.schedules.toArray();
+            } else {
+              const dataToSave = loadedSchedules || defaultSchedules;
+              await db.schedules.bulkAdd(dataToSave);
+              return dataToSave;
+            }
+          })();
+
+          const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1000));
+          const idbResult = await Promise.race([idbPromise, timeoutPromise]);
+
+          if (Array.isArray(idbResult) && idbResult.length > 0) {
+            idbResult.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            set({ schedules: idbResult, isLoadingSchedules: false });
+            return;
+          }
+        } catch (idbErr) {
+          console.warn('[Store] IndexedDB background sync warning:', idbErr);
+        }
+      }
+
+      // 3. Fallback save to localStorage if not yet stored
+      if (!loadedSchedules) {
+        try {
+          localStorage.setItem('SingaporeTravelSchedules', JSON.stringify(defaultSchedules));
+          localStorage.setItem('SingaporeTravelDataVersion', 'v16');
+        } catch (e) {
+          console.warn('[Store] Failed to save fallback to localStorage:', e);
+        }
+      }
+    } catch (globalErr) {
+      console.error('[Store] initSchedules global catch:', globalErr);
+    } finally {
+      set({ isLoadingSchedules: false });
     }
-
-    // Ensure sorted by order
-    loadedSchedules.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-    set({ schedules: loadedSchedules, isLoadingSchedules: false });
   },
 
   addSchedule: async (item) => {
@@ -214,6 +238,7 @@ export const useStore = create<TravelStore>((set) => ({
 
     try {
       localStorage.setItem('SingaporeTravelSchedules', JSON.stringify(freshSchedules));
+      localStorage.setItem('SingaporeTravelDataVersion', 'v18');
       console.log('[Store] Cleared and reset localStorage schedules');
     } catch (err) {
       console.error('[Store] Failed to reset localStorage:', err);

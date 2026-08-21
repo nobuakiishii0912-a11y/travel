@@ -39,9 +39,12 @@ export const CurrencyWidget = React.memo(function CurrencyWidget() {
           return;
         }
 
-        const res = await fetch('https://api.exchangerate-api.com/v4/latest/SGD');
-        if (!res.ok) throw new Error('Network error');
-        const data = await res.json();
+        const res = await fetch('https://api.exchangerate-api.com/v4/latest/SGD').catch(() => null);
+        if (!res || !res.ok) throw new Error('Network error');
+        const data = await res.json().catch(() => null);
+        if (!data || !data.rates || typeof data.rates.JPY !== 'number') {
+          throw new Error('Invalid rate data format');
+        }
         const rate = data.rates.JPY;
         
         if (db) {

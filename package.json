@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"const fs = require('fs'); if (fs.existsSync('.next')) fs.rmSync('.next', { recursive: true, force: true });\" && next dev -p 3000",
-    "build": "rm -rf dist out && node scripts/export-data.js && NODE_ENV=production next build && node scripts/postbuild.js",
+    "dev": "node scripts/build-css.js && next dev -p 3000",
+    "build": "rm -rf dist out && node scripts/build-css.js && node scripts/export-data.js && next build && node scripts/postbuild.js",
     "lint": "eslint .",
     "clean": "next clean"
   },
