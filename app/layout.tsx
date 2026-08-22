@@ -20,9 +20,13 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const cssPath = basePath ? `${basePath}/globals.compiled.css` : '/globals.compiled.css';
+
   return (
     <html lang="ja" className={inter.variable}>
       <head>
+        <link rel="stylesheet" href={cssPath} />
         <link rel="manifest" href="./manifest.json" />
         <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
       </head>

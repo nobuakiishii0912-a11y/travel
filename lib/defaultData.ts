@@ -8,9 +8,9 @@ export const initialData: ScheduleItem[] = [
     category: 'Flight', priority: 'High', order: 0, transport: { type: '徒歩', durationMin: 10 }, stayDurationMin: 0, highlights: ['スタート！'], warnings: [], showTaxiCard: false
   },
   { 
-    id: '2', date: '2026-09-08', title: 'ジュエル チャンギ エアポート', startTime: '15:10', endTime: '16:30', locationName: 'Jewel Changi Airport', lat: 1.3602, lng: 103.9897, 
+    id: '2', date: '2026-09-08', title: 'ジュエル＆昼食', startTime: '15:10', endTime: '16:30', locationName: 'Jewel Changi Airport', lat: 1.3602, lng: 103.9897, 
     address: '78 Airport Blvd., シンガポール 819666', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.3602,103.9897', openingHours: { open: '10:00', close: '22:00' },
-    category: 'Sightseeing', priority: 'High', order: 1, transport: { type: '電車／MRT', durationMin: 50, route: 'チャンギ・エアポート駅(CG2) → エキスポ駅(CG1/DT35)でダウンタウン線乗換 → ベイフロント駅(DT16/CE1)' }, stayDurationMin: 80, highlights: ['ビル7階相当の高さから落ちる世界最大級 of 屋内滝。様々な階層から異なるアングルで表情を楽しめます。'], warnings: ['滝（レイン・ボルテックス）の稼働時間は月〜木11:00〜22:00です。'], showTaxiCard: false
+    category: 'Sightseeing', priority: 'High', order: 1, transport: { type: '電車／MRT', durationMin: 52, route: 'チャンギ・エアポート駅(CG2) → タナ・メラ駅(CG/EW4)で東西線乗換 → パヤ・レバー駅(EW8/CC9)でサークル線乗換 → ベイフロント駅(CE1/DT16) → 徒歩約2分でマリーナベイ・サンズ', mapUrl: 'https://maps.app.goo.gl/Vz1EG8wuJKzrKNBx6' }, stayDurationMin: 80, highlights: ['ビル7階相当の高さから落ちる世界最大級 of 屋内滝。様々な階層から異なるアングルで表情を楽しめます。'], warnings: ['滝（レイン・ボルテックス）の稼働時間は月〜木11:00〜22:00です。'], showTaxiCard: false
   },
   { 
     id: '3', date: '2026-09-08', title: 'マリーナベイ・サンズ（チェックイン）', startTime: '17:20', endTime: '18:00', locationName: 'Marina Bay Sands', lat: 1.2834, lng: 103.8607, 
@@ -18,32 +18,52 @@ export const initialData: ScheduleItem[] = [
     category: 'Hotel', priority: 'High', order: 2, transport: { type: '徒歩／エレベーター', durationMin: 10 }, stayDurationMin: 40, highlights: ['1泊目ホテルチェックイン・部屋で休憩'], warnings: [], showTaxiCard: false
   },
   { 
-    id: '4', date: '2026-09-08', title: 'Infinity Pool Marina Bay Sands', startTime: '18:10', endTime: '19:10', locationName: 'Infinity Pool Marina Bay Sands', lat: 1.2834, lng: 103.8607, 
+    id: '4', date: '2026-09-08', title: 'インフィニティプール（マリーナベイ・サンズ）', startTime: '18:10', endTime: '19:10', locationName: 'Infinity Pool Marina Bay Sands', lat: 1.2834, lng: 103.8607, 
     address: '10 Bayfront Ave, シンガポール 018956', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2834,103.8607', openingHours: { open: '06:00', close: '23:59' },
     category: 'Sightseeing', priority: 'High', order: 3, transport: { type: '徒歩／エレベーター', durationMin: 10 }, stayDurationMin: 60, highlights: ['夕暮れから夜景へと変わるマジックアワーの絶景。温水ジャグジーもあります。'], warnings: [], showTaxiCard: false
   },
   { 
-    id: '5', date: '2026-09-08', title: 'SkyPark Observation Deck', startTime: '19:20', endTime: '19:50', locationName: 'SkyPark Observation Deck', lat: 1.2834, lng: 103.8607, 
+    id: '5', date: '2026-09-08', title: 'スカイパーク展望デッキ（マリーナベイ・サンズ）', startTime: '19:20', endTime: '19:35', locationName: 'SkyPark Observation Deck', lat: 1.2834, lng: 103.8607, 
     address: '10 Bayfront Ave, シンガポール 018956', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2834,103.8607', openingHours: { open: '11:00', close: '21:00' },
-    category: 'Sightseeing', priority: 'High', order: 4, transport: { type: '徒歩／エレベーター', durationMin: 10, route: '1階イベントプラザへ' }, stayDurationMin: 30, highlights: ['地上200mからシンガポール海峡やガーデンズ・バイ・ザ・ベイを見下ろす360度のパノラマビュー。'], warnings: [], showTaxiCard: false
+    category: 'Sightseeing', priority: 'High', order: 4, transport: { type: '徒歩／エレベーター', durationMin: 10, route: '1階イベントプラザへ' }, stayDurationMin: 15, highlights: ['地上200mからシンガポール海峡やガーデンズ・バイ・ザ・ベイを見下ろす360度のパノラマビュー。'], warnings: [], showTaxiCard: false
   },
   { 
-    id: '6', date: '2026-09-08', title: 'スペクトラ', startTime: '20:00', endTime: '20:15', locationName: 'Spectra - A Light & Water Show', lat: 1.2842, lng: 103.8587, 
+    id: '6', date: '2026-09-08', title: 'スペクトラ', startTime: '19:45', endTime: '20:15', locationName: 'Spectra - A Light & Water Show', lat: 1.2842, lng: 103.8587, 
     address: '2 Bayfront Ave, シンガポール 018972', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2842,103.8587', openingHours: { open: '20:00', close: '21:00' },
-    category: 'Sightseeing', priority: 'High', order: 5, transport: { type: '徒歩', durationMin: 15, route: 'マリーナベイサンズを抜け連絡橋を渡ってスーパーツリーグローブへ' }, stayDurationMin: 15, highlights: ['最前列は水しぶきがかかるほどの臨場感！光と水のダイナミックなショーを楽しみます。'], warnings: [], showTaxiCard: false
+    category: 'Sightseeing', priority: 'High', order: 5, transport: { type: '徒歩', durationMin: 15, route: 'マリーナベイサンズを抜け連絡橋を渡ってスーパーツリーグローブへ' }, stayDurationMin: 30, highlights: [
+      '最もおすすめの位置：イベントプラザ内のウッドデッキ「階段席（ステップ）の中段・中央」',
+      '中央の基準： 水上に浮かぶ「高さ12mのガラス製ピラミッド」の真正面',
+      '前後の位置： 最前列ではなく、後ろの階段状ウッドデッキに腰掛ける（または3〜5段上に立つ）',
+      '19:35　Observation Deckを出発\nエレベーターで地下または1階へ降り、ショップス方面へ進む',
+      '19:40　イベントプラザへ抜ける\nショップス1階の「ルイ・ヴィトン（アイランドメゾン）」または「Apple Marina Bay Sands」の間の屋外出口から出ると、目の前がイベントプラザ',
+      '19:45　ベストポジションを確保',
+      '20:00〜20:15　「スペクトラ」本番（上演時間：15分間）'
+    ], warnings: [], showTaxiCard: false
   },
   { 
     id: '7', date: '2026-09-08', title: 'ガーデン・ラプソディ', startTime: '20:45', endTime: '21:00', locationName: 'Supertree Grove', lat: 1.2820, lng: 103.8637, 
     address: '18 Marina Gardens Dr, シンガポール 018953', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2820,103.8637', openingHours: { open: '19:45', close: '20:45' },
-    category: 'Sightseeing', priority: 'Low', order: 6, transport: { type: 'タクシー', durationMin: 15 }, stayDurationMin: 15, highlights: ['光と音楽が連動する幻想的なショー。地面に寝転がって巨大なツリーを真上に見上げるのが定番の楽しみ方です。（少し早めに着いて場所を確保します）'], warnings: ['毎日19:45と20:45の2回開催（約15分間）。'], showTaxiCard: false
+    category: 'Sightseeing', priority: 'Low', order: 6, transport: { type: 'タクシー', durationMin: 15 }, stayDurationMin: 15, highlights: [
+      '■ 20:15｜スペクトラ終演・即移動開始\n・イベントプラザから即座に後ろのザ・ショップス（モール）入口へ向かう。',
+      '■ 20:16｜ザ・ショップス 1階\n・モール内に入り、「Hotel Tower 2（タワー2）」の案内表示に従い直進。',
+      '■ 20:18｜ホテル タワー2 ロビー\n・タワー2のロビーに抜け、エレベーターへ。',
+      '■ 20:19｜タワー2「レベル6 (L6)」へ\n・エレベーターで「6階（L6）」へ上がる。\n・「Lions Bridge / Gardens by the Bay」の案内板に従う。',
+      '■ 20:20｜ライオンズ・ブリッジ渡橋\n・ホテル6階から屋外の連絡橋（Lions Bridge）を直進して渡る。',
+      '■ 20:23｜ガーデン側へ降下\n・橋の突き当たりにある大型エレベーターで「地上1階」へ降りる。',
+      '■ 20:24｜ドラゴンフライ・ブリッジ通過\n・池にかかる橋（Dragonfly Bridge）を渡り、直進してスーパーツリーグローブへ。',
+      '■ 20:26｜スーパーツリーグローブ到着（開始19分前）\n・混雑前に到着完了。',
+      '■ 20:27｜座席確保\n・【最優先】中央メインツリー（一番高い木）根元の「円形石垣」\n・【第2候補】スカイウェイ下の石垣 または 外周ベンチ\n・浅めに腰掛けて上体を少し倒すと首が疲れにくい。',
+      '■ 20:28〜20:44｜待機＆撮影セッティング\n・持参したハンカチやタオルを石垣に敷く（座り心地アップ）。\n・水分補給、スマホカメラを「超広角（0.5x）」に設定。',
+      '■ 20:45〜21:00｜ガーデン・ラプソディ鑑賞（約15分間）\n・座ったまま光と音楽のショーを満喫。'
+    ], warnings: [], showTaxiCard: false
   },
   { 
-    id: '8', date: '2026-09-08', title: 'ジャンボ シーフード リバーサイドポイント店', startTime: '21:15', endTime: '22:45', locationName: 'Jumbo Seafood Riverside Point', lat: 1.2894, lng: 103.8459, 
+    id: '8', date: '2026-09-08', title: 'ジャンボ シーフード リバーサイドポイント店', startTime: '21:30', endTime: '23:00', locationName: 'Jumbo Seafood Riverside Point', lat: 1.2894, lng: 103.8459, 
     address: '30 Merchant Rd, #01-01/02 Riverside Point, シンガポール 058282', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2894,103.8459', openingHours: { open: '11:30', close: '23:00' },
     category: 'Food', priority: 'High', order: 7, transport: { type: 'タクシー', durationMin: 15, route: 'タクシーでホテル（マリーナベイ・サンズ）へ戻ります' }, stayDurationMin: 90, highlights: ['名物チリクラブ'], warnings: [], showTaxiCard: true
   },
   { 
-    id: '9', date: '2026-09-08', title: 'マリーナベイ・サンズ', startTime: '23:00', endTime: '23:00', locationName: 'Marina Bay Sands', lat: 1.2834, lng: 103.8607, 
+    id: '9', date: '2026-09-08', title: 'マリーナベイ・サンズ', startTime: '23:15', endTime: '23:15', locationName: 'Marina Bay Sands', lat: 1.2834, lng: 103.8607, 
     address: '10 Bayfront Ave, シンガポール 018956', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.2834,103.8607', openingHours: { open: '00:00', close: '23:59' },
     category: 'Hotel', priority: 'High', order: 8, transport: { type: 'なし', durationMin: 0 }, stayDurationMin: 0, highlights: ['1日目終了。ホテルに戻ってゆっくり休憩・宿泊。'], warnings: [], showTaxiCard: true 
   },
@@ -108,46 +128,17 @@ export const initialData: ScheduleItem[] = [
     id: '21', date: '2026-09-09', title: 'ナイトサファリ', startTime: '18:30', endTime: '22:00', locationName: 'Night Safari', lat: 1.4022, lng: 103.7880, 
     address: '80 Mandai Lake Rd, シンガポール 729826', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.4022,103.7880', openingHours: { open: '18:00', close: '00:00' },
     category: 'Sightseeing', priority: 'High', order: 11, transport: { type: 'タクシー', durationMin: 40, route: 'タクシーでホテル（Hotel Mi Rochor）へ戻ります' }, stayDurationMin: 210, 
-    highlights: [], 
+    highlights: [
+      '★Wi-Fi「PARK_FREE_WIFI」接続',
+      '■ 18:30〜19:15【① 現地での夕食 ＆ 雰囲気満喫】（45分）\n・★飲食店バウチャーS$10（S$5×2）を利用\n・おすすめの食事スポット：\n　- Ulu Ulu Safari Restaurant（入園ゲート周辺）：チキンライス、ラクサ、サテなどのローカル料理\n　- Mandai Wildlife West（ゲート手前エリア）：A&W（バーガー）、Bird Bakery、Collin\'s（洋食）など',
+      '■ 19:25〜20:00【② 日本語トラム乗車】（45分）\n・★19:25：マルチランゲージトラム乗り場（5番乗り場）に集合\n・19:35〜20:10：日本語音声トラム乗車（約30〜35分）',
+      '■ 20:10〜20:20【インターバル ＆ 移動】（10分）\n・トラムを降りたら、アンフィシアター（ショー会場）までは徒歩2〜3分の近さです。',
+      '■ 20:20〜21:00【③ ナイトショー鑑賞】（40分）\n・★20:20：クリーチャー・オブ・ザ・ナイトのアンフィシアター1階の入口（扉前）に集合\n・20:30〜21:00：「Creatures of the Night」鑑賞（約30分）\n・21:00：ショー終了後、現地にて自由解散',
+      '■ 21:00〜21:45【④ 徒歩トレイル散策（解散後）】（45分）\n・ここが最大のポイント！\n・おすすめルート：Leopard Trail（レオパード・トレイル）＋East Lodge Trail\n・ヒョウ（Leopard）＆ ウンピョウ：トラムからは見えないガラス越しの至近距離で観察\n・マレートラ ＆ スローロリス：木の上でゆっくり動く姿は必見\n・オオコウモリの巨大ドーム（Giant Flying Fox）：目の前を巨大なコウモリが音もなく滑空する圧巻の体験',
+      '■ 21:45〜22:00【⑤ お土産選び ＆ 退園】（30分）\n・場所：退園口直前にある大型ショップ「Safari Shop」\n・★小売店バウチャーS$10（S$5×2）を利用\n・22:00：買い物を終えて退園ゲートを出る'
+    ], 
     warnings: ['フラッシュ撮影は禁止です。', '蚊が多いので虫除けスプレー必須。'],
-    showTaxiCard: false,
-    notes: `★Wi-Fi「PARK_FREE_WIFI」接続
-
-18:30 〜 19:15 【① 現地での夕食 ＆ 雰囲気満喫】（45分）
-★飲食店バウチャーS$10（S$5×2）を利用
-おすすめの食事スポット：
-Ulu Ulu Safari Restaurant（入園ゲート周辺）： チキンライス、ラクサ、サテなどのローカル料理が揃う定番レストラン。
-Mandai Wildlife West（ゲート手前エリア）： A&W（バーガー）、Bird Bakery、Collin's（洋食）など、カジュアルに楽しめる飲食店が多数。
-
-19:25 〜 20:00 【② 日本語トラム乗車】（45分）
-
-★19:25： マルチランゲージトラム乗り場（5番乗り場）に集合
-
-19:35 〜 20:10： 日本語音声トラム乗車（約30〜35分）
-
-20:10 〜 20:20 【インターバル ＆ 移動】（10分）
-トラムを降りたら、アンフィシアター（ショー会場）までは徒歩2〜3分の近さです。
-
-20:20 〜 21:00 【③ ナイトショー鑑賞】（40分）
-
-★20:20： クリーチャー・オブ・ザ・ナイトのアンフィシアター1階の入口（扉前）に集合
-
-20:30 〜 21:00： 「Creatures of the Night」鑑賞（約30分）
-
-21:00： ショー終了後、現地にて自由解散
-
-21:00 〜 21:45 【④ 徒歩トレイル散策（解散後）】（45分）
-ここが最大のポイント：
-おすすめルート：Leopard Trail（レオパード・トレイル）＋East Lodge Trail
-ヒョウ（Leopard）＆ ウンピョウ： トラムからは見えないガラス越しの至近距離で、歩き回る美しい姿を観察。
-マレートラ ＆ スローロリス： 木の上でゆっくり動く姿は必見。
-オオコウモリの巨大ドーム（Giant Flying Fox）： 檻の中に入ると、目の前を巨大なコウモリが音もなく滑空する圧巻の体験。
-
-21:45 〜 22:00【⑤ お土産選び ＆ 退園】（30分）
-場所： 退園口直前にある大型ショップ「Safari Shop」。
-★小売店バウチャーS$10（S$5×2）を利用
-
-22:00： 買い物を終えて退園ゲートを出る`
+    showTaxiCard: false
   },
   { 
     id: '22', date: '2026-09-09', title: 'Hotel Mi Rochor', startTime: '22:40', endTime: '22:40', locationName: 'Hotel Mi Rochor', lat: 1.3015, lng: 103.8526, 

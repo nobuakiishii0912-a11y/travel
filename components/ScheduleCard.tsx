@@ -241,7 +241,7 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
                   <div className="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100/50">
                     <div className="flex items-center justify-between mb-1.5">
                       <h4 className="font-bold text-xs text-emerald-700 flex items-center gap-1.5">
-                        <Sparkles size={14} /> 楽しむポイント
+                        <Sparkles size={14} /> MEMO
                       </h4>
                       {isEditingHighlights ? (
                         <div className="flex items-center gap-1">
@@ -276,14 +276,21 @@ export const ScheduleCard = React.memo(function ScheduleCard({ item }: ScheduleC
                         value={highlightsText}
                         onChange={(e) => setHighlightsText(e.target.value)}
                         className="w-full text-xs p-2 rounded bg-white/50 border border-emerald-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 min-h-[60px]"
-                        placeholder="ポイントを入力（改行で区切る）"
+                        placeholder="MEMOを入力（改行で区切る）"
                       />
                     ) : item.highlights && item.highlights.length > 0 ? (
-                      <ul className="list-disc list-inside text-xs space-y-1 text-emerald-800/80 font-medium">
-                        {item.highlights.map((hl, i) => <li key={i}>{hl}</li>)}
+                      <ul className="text-xs space-y-2 text-emerald-800/80 font-medium">
+                        {item.highlights.map((hl, i) => (
+                          <li key={i} className="whitespace-pre-line leading-relaxed flex items-start gap-1.5">
+                            {!hl.startsWith('■') && !hl.startsWith('・') && !hl.startsWith('★') && (
+                              <span className="text-emerald-500 mt-0.5 select-none shrink-0">•</span>
+                            )}
+                            <span className="flex-1">{hl}</span>
+                          </li>
+                        ))}
                       </ul>
                     ) : (
-                       <div className="text-xs text-emerald-600/60 italic">楽しむポイントはまだありません</div>
+                       <div className="text-xs text-emerald-600/60 italic">MEMOはまだありません</div>
                     )}
                   </div>
 

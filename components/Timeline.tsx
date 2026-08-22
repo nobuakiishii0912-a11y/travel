@@ -27,6 +27,12 @@ interface TimelineProps {
 
 export const Timeline = React.memo(function Timeline({ schedules, date }: TimelineProps) {
   const { reorderSchedules } = useStore();
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Auto-scroll to active item
   const activeItemId = useMemo(() => {
     const item = schedules.find(s => s.status !== 'Completed');
@@ -90,25 +96,35 @@ export const Timeline = React.memo(function Timeline({ schedules, date }: Timeli
 
   return (
     <div className="py-4">
-      <DndContext 
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext 
-          items={schedules.map(s => s.id)}
-          strategy={verticalListSortingStrategy}
+      {isMounted ? (
+        <DndContext 
+          id="timeline-dnd-context"
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
         >
-          <div className="relative">
-            {schedules.map(item => (
-              <ScheduleCard key={item.id} item={item} />
-            ))}
-            
-            {/* Timeline end padding */}
-            <div className="h-16" />
-          </div>
-        </SortableContext>
-      </DndContext>
+          <SortableContext 
+            items={schedules.map(s => s.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="relative">
+              {schedules.map(item => (
+                <ScheduleCard key={item.id} item={item} />
+              ))}
+              
+              {/* Timeline end padding */}
+              <div className="h-16" />
+            </div>
+          </SortableContext>
+        </DndContext>
+      ) : (
+        <div className="relative">
+          {schedules.map(item => (
+            <ScheduleCard key={item.id} item={item} />
+          ))}
+          <div className="h-16" />
+        </div>
+      )}
     </div>
   );
 });
