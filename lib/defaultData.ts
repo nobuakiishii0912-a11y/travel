@@ -203,13 +203,13 @@ export const initialData: ScheduleItem[] = [
     category: 'Food', priority: 'High', order: 10, transport: { type: 'タクシー', durationMin: 20 }, stayDurationMin: 45, highlights: ['箸を使わず「レンゲのみ」でスープと一緒に短く切られた麺をすくって食べるのがカトンラクサの伝統スタイル。'], warnings: [], showTaxiCard: false
   },
   { 
-    id: '33', date: '2026-09-10', title: 'シンガポール・チャンギ国際空港', startTime: '17:25', endTime: '18:00', locationName: 'Changi Airport', lat: 1.3644, lng: 103.9915, 
+    id: '33', date: '2026-09-10', title: 'シンガポール・チャンギ国際空港', startTime: '17:25', endTime: '17:25', locationName: 'Changi Airport', lat: 1.3644, lng: 103.9915, 
     address: 'Airport Blvd., シンガポール', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=1.3644,103.9915', openingHours: { open: '00:00', close: '23:59' },
-    category: 'Flight', priority: 'High', order: 11, transport: { type: '飛行機', durationMin: 420, route: 'チャンギ空港 → 日本の主要空港' }, stayDurationMin: 35, highlights: ['最後のお土産購入など'], warnings: [], showTaxiCard: true 
+    category: 'Flight', priority: 'High', order: 11, transport: { type: '飛行機', durationMin: 120, route: 'チャンギ空港 → バリ島（ングラ・ライ国際空港）' }, stayDurationMin: 0, highlights: ['最後のお土産購入など'], warnings: [], showTaxiCard: true 
   },
   { 
-    id: '34', date: '2026-09-10', title: '日本（羽田空港）に帰国', startTime: '18:10', endTime: '18:10', locationName: 'Haneda Airport', lat: 35.5494, lng: 139.7798, 
-    address: '日本、東京都大田区羽田空港', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=35.5494,139.7798', openingHours: { open: '00:00', close: '23:59' },
-    category: 'Flight', priority: 'High', order: 12, transport: { type: 'なし', durationMin: 0 }, stayDurationMin: 0, highlights: ['無事日本に帰国！3日間のシンガポール旅行、お疲れ様でした。'], warnings: [], showTaxiCard: false 
+    id: '34', date: '2026-09-10', title: 'バリ島へ向かう', startTime: '19:25', endTime: '22:20', locationName: 'ングラ・ライ国際空港', lat: -8.7482, lng: 115.1672, 
+    address: 'Jalan Raya Gusti Ngurah Rai, Tuban, Kuta, Kabupaten Badung, Bali 80362 インドネシア', googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=-8.7482,115.1672', openingHours: { open: '00:00', close: '23:59' },
+    category: 'Flight', priority: 'High', order: 12, transport: { type: 'なし', durationMin: 0 }, stayDurationMin: 175, highlights: ['シンガポールからバリ島（ングラ・ライ国際空港）へ出発！次の目的地へ。'], warnings: [], showTaxiCard: false 
   },
 ];

@@ -55,7 +55,7 @@ export const useStore = create<TravelStore>((set) => ({
       try {
         const storedVersion = localStorage.getItem('SingaporeTravelDataVersion');
         const localData = localStorage.getItem('SingaporeTravelSchedules');
-        const CURRENT_VERSION = 'v27';
+        const CURRENT_VERSION = 'v30';
 
         if (localData && storedVersion === CURRENT_VERSION) {
           try {
